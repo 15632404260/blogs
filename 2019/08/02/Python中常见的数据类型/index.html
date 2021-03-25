@@ -1,0 +1,666 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python中常见的数据类型 | 欢迎来到秦殇的博客</title><meta name="keywords" content="python，无限级分类，vue，三方登录，栈，MongoDB，redis，docker"><meta name="author" content="qinshang"><meta name="copyright" content="qinshang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python基本数据类型一般分为：数字、字符串、列表、元组、字典、集合（可变集合和不可变集合）这六种基本数据类型， 其中 数字、字符串、元祖和可变集合为不可变类型，列表、字典和不可变集合为可变类型。 下面我们来详细的介绍一下他们： 数字： 数字类型是不可更改的对象。对变量改变数字值就是生成&#x2F;创建新的对象。Python支持多种数字类型： 整型(标准整型和长整型(Python2.7及之前的有这种类型)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中常见的数据类型">
+<meta property="og:url" content="http://www.qszjq.xyz/2019/08/02/Python%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="欢迎来到秦殇的博客">
+<meta property="og:description" content="Python基本数据类型一般分为：数字、字符串、列表、元组、字典、集合（可变集合和不可变集合）这六种基本数据类型， 其中 数字、字符串、元祖和可变集合为不可变类型，列表、字典和不可变集合为可变类型。 下面我们来详细的介绍一下他们： 数字： 数字类型是不可更改的对象。对变量改变数字值就是生成&#x2F;创建新的对象。Python支持多种数字类型： 整型(标准整型和长整型(Python2.7及之前的有这种类型)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/03/25/zKGVZdN4bJDAPvj.jpg">
+<meta property="article:published_time" content="2019-08-02T03:33:29.000Z">
+<meta property="article:modified_time" content="2021-03-25T10:14:01.399Z">
+<meta property="article:author" content="qinshang">
+<meta property="article:tag" content="python，无限级分类，vue，三方登录，栈，MongoDB，redis，docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/25/zKGVZdN4bJDAPvj.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.qszjq.xyz/2019/08/02/Python%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-25 18:14:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/03/25/zKGVZdN4bJDAPvj.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">欢迎来到秦殇的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python中常见的数据类型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2019-08-02T03:33:29.000Z" title="Created 2019-08-02 11:33:29">2019-08-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-03-25T10:14:01.399Z" title="Updated 2021-03-25 18:14:01">2021-03-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Python基本数据类型一般分为：<strong>数字</strong>、<strong>字符串</strong>、<strong>列表</strong>、<strong>元组</strong>、<strong>字典</strong>、<strong>集合</strong>（可变集合和不可变集合）这六种基本数据类型，</p>
+<p>其中 数字、字符串、元祖和可变集合为不可变类型，列表、字典和不可变集合为可变类型。</p>
+<p>下面我们来详细的介绍一下他们：</p>
+<h3 id="数字："><a href="#数字：" class="headerlink" title="数字："></a>数字：</h3><blockquote>
+<p>数字类型是不可更改的对象。对变量改变数字值就是生成/创建新的对象。Python支持多种数字类型：</p>
+<p>整型(标准整型和长整型(Python2.7及之前的有这种类型))、布尔型、双精度浮点型、十进制浮点型、复数。</p>
+</blockquote>
+<p><strong>标准整型</strong></p>
+<blockquote>
+<p>int，标准整型，在大多数32位机器上标准整型取值范围是-2^31到2^31-1，也就是-2147483648~2147483647，如果在64位机器使用64位编译器，那么这个系统的标准整型将是64位。</p>
+</blockquote>
+<p><strong>布尔型</strong></p>
+<blockquote>
+<p>bool，从Python2.3开始Python中添加了布尔类型。布尔类型有两种True和False。对于没有__nozero__方法的对象默认是True。</p>
+<p>对于值为0的数字、空集（空列表、空元组、空字典等）在Python中的布尔类型中都是False。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; bool(1)</span></span><br><span class="line">True</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; bool(<span class="string">&#x27;a&#x27;</span>)</span></span><br><span class="line">True</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; bool(0)</span></span><br><span class="line">False</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; bool(<span class="string">&#x27;&#x27;</span>)</span></span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+
+<p><strong>浮点型</strong></p>
+<blockquote>
+<p>​        float，每个浮点型占8个字节（64位），完全遵守IEEE754号规范（52M/11E/1S）,其中52个位用于表示底，11个位用于表示指数（可表示的范围大约是±10**308.25），剩下的一个位表示符号。这看上去相当完美，然而，实际精度依赖于机器架构和创建Python解释器的编译器。</p>
+<p>​        浮点型值通常都有一个小数点和一个可选的后缀e（大写或小写，表示科学计数法）。在e和指数之间可以用正（+）或负（-）表示指数的正负（正数的话可以省略符号）。更多内容，请点击<a target="_blank" rel="noopener" href="https://www.py.cn/">python学习网</a>。</p>
+</blockquote>
+<p>以上是Python核心编程的对浮点型(双精度浮点型)的说明。经过Python实测浮点型默认长度是24字节如果超出这个范围会自动</p>
+<p><strong>复数类型</strong></p>
+<blockquote>
+<p>complex，在复数中虚数不能单独存在，它们总是和一个值为0.0的实数部分一起来构成一个复数。复数由实数部分和虚数部分构成。</p>
+<p>表示虚数的语法：real+imagj。</p>
+<p>实数部分和虚数部分都是浮点型。</p>
+<p>虚数部分必须有后缀j或J。</p>
+</blockquote>
+<h3 id="字符串："><a href="#字符串：" class="headerlink" title="字符串："></a>字符串：</h3><blockquote>
+<p>​        <strong>字符串</strong>(string)是<em><strong>不可变类型</strong></em>，就是说改变一个字符串的元素需要新建一个新的字符串。字符串是由独立的字符组成的，并且这些字符可以通过切片操作顺序地访问。<em><strong>里面通过在引号间包含字符的方式创建字符串，单引号和双引号的作用是相同的。</strong></em></p>
+<p>​        Python用“原始字符串”操作符来创建直接量字符串，所以再做区分就没什么意义了。其他的语言，比如C语言里面用单引号来标示字符，双引号标示字符串，而在Python里面没有字符这个类型。这可能是双引号和单引号在Python里面被视作一样的另一个原因。</p>
+<p>​        Python实际上有三类字符串。通常意义的字符串（str） 和Unicode字符串（unicode） 实际上都是抽象类basestring的子类。这个basestring是不能实例化的。</p>
+</blockquote>
+<h4 id="字符串常见的操作方法："><a href="#字符串常见的操作方法：" class="headerlink" title="字符串常见的操作方法："></a>字符串常见的操作方法：</h4><table>
+<thead>
+<tr>
+<th>操作方法</th>
+<th>作用</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index()</td>
+<td>查找字符串中第一次出现的子字符串的位置；可以规定字符串的索引查找范围[star,end)。若无则会报错</td>
+<td>my_str=”hello word hello python”<br/>ret_01=my_str.index(“lo”,5,17)<br/>print(ret_01)</td>
+</tr>
+<tr>
+<td>find()</td>
+<td>找字符串中指定的子字符串第一次出现的位置（find默认从左侧开始查找，rfind从右侧开始查找），可以规定字符串的索引查找范围。若无则返回 -1</td>
+<td>str.find(sub,start,end) -&gt; int 返回整数<br />- sub —要索引的子字符串。<br/>- start —索引的起始位置。默认值为0。<br/>- end —索引的结束位置。默认值为字符串长度len(str)。</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>查找指定字符在字符串中出现的次数</td>
+<td>my_str=”hello word hello python”<br/>ret_06=my_str.count(“lo”)<br/>print(ret_06)</td>
+</tr>
+<tr>
+<td>replace()</td>
+<td>替换字符串中指定字符</td>
+<td>replace(“被替换的字符”,”替换成的字符”，替换次数)   替换次数不写默认全部替换</td>
+</tr>
+<tr>
+<td>split()</td>
+<td>拆分字符串。 通过指定分隔符sep对字符串进行分割，并保存分割后的字符串列表。</td>
+<td>my_str=”hello word hello python”<br/>ret_03=my_str.split(“ “)<br/>print(ret_03)</td>
+</tr>
+<tr>
+<td>capitalize()</td>
+<td>将字符串的第一个字母变成大写，其余字母变为小写。</td>
+<td>my_str=”hello word hello python”<br/>ret_04=my_str.capitalize()<br/>print(ret_04)</td>
+</tr>
+<tr>
+<td>title()</td>
+<td>返回一个满足标题格式的字符串。即所有英文单词首字母大写，其余英文字母小写</td>
+<td>my_str=”hello word hello python”<br/>ret_05=my_str.title()<br/>print(ret_05)</td>
+</tr>
+<tr>
+<td>startswith()</td>
+<td>判断字符串是否以指定字符或子字符串开头</td>
+<td>str.endswith(“suffix”, start, end) 或str[start,end].<br />注意：空字符的情况。返回值通常为True</td>
+</tr>
+<tr>
+<td>endswith()</td>
+<td>用于判断字符串中某段字符串是否以指定字符或子字符串结尾。</td>
+<td>str.endswith(“suffix”)</td>
+</tr>
+<tr>
+<td>isalnum()</td>
+<td>检测字符串是否由字母和数字组成。str中至少有一个字符且所有字符都是字母或数字则返回 True,否则返回 False</td>
+<td>str.isalnum() -&gt; bool 返回值为布尔类型（True,False）</td>
+</tr>
+<tr>
+<td>isalpha()</td>
+<td>检测字符串是否只由字母组成。字符串中至少有一个字符且<br/>所有字符都是字母则返回 True,否则返回 False。</td>
+<td>str.isalpha() -&gt; bool 返回值为布尔类型（True,False）</td>
+</tr>
+<tr>
+<td>isdigit()</td>
+<td>检测字符串是否只由数字组成.字符串中至少有一个字符且所有字符都是数字则返回 True,否则返回 False</td>
+<td>str.isdigit() -&gt; bool 返回值为布尔类型（True,False）<br />注：能判断“①”，不能判断中文数字。但 isnumeric() 函数可以。</td>
+</tr>
+<tr>
+<td>islower()</td>
+<td>检测字符串中的字母是否全由小写字母组成。（字符串中可包含非字母字符）字符串中包含至少一个区分大小写的字符，且所有这些区分大小写的字符都是小写，则返回 True，否则返回 False。</td>
+<td>str.islower() -&gt; bool 返回值为布尔类型（True,False）</td>
+</tr>
+<tr>
+<td>isupper()</td>
+<td>检测字符串中的字母是否全由大写字母组成。（字符串中可包含非字母字符）。字符串中包含至少一个区分大小写的字符，且所有这些区分大小写的字符都是大写，则返回 True，否则返回 False。</td>
+<td>str.isupper() -&gt; bool 返回值为布尔类型（True,False）</td>
+</tr>
+<tr>
+<td>strip()  lstrip()  rstrip()</td>
+<td>该函数的作用是去除字符串开头和结尾处指定的字符，不会去除字符串中间对应的字符<br />lstrip() 方法用于截掉字符串左边的空格或指定字符。<br />删除 str 字符串末尾的指定字符（默认为空格</td>
+<td>str.strip(chars)<br />参数：chars – 要去除的字符 默认为空格或换行符</td>
+</tr>
+<tr>
+<td>join()</td>
+<td>将iterable变量的每一个元素后增加一个str字符串</td>
+<td>sep.join(iterable)<br />sep——分隔符。可以为空。<br/>iterable（可迭代对象）—— 要连接的变量 ，可以是 字符串，元组，字典，列表等。</td>
+</tr>
+<tr>
+<td>upper()</td>
+<td>将字符串中所有小写字母转换成大写字母</td>
+<td>my_str=”hello word hello python”<br/>ret_06=my_str.upper()<br/>print(ret_06)</td>
+</tr>
+<tr>
+<td>center()</td>
+<td>返回一个长度为width,两边用fillchar(单字符)填充的字符串，即字符串str居中，两边用fillchar填充。若字符串的长度大于width,则直接返回字符串str</td>
+<td>width —— 指定字符串的输出长度。<br />fillchar—— 将要填充的单字符，默认为空格</td>
+</tr>
+<tr>
+<td>just()   ljust()  rjust()</td>
+<td>返回一个原字符串左对齐（默认）,并使用fillchar填充(默认为空格)至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串。ljust()左对齐，rjust()右对齐</td>
+<td></td>
+</tr>
+<tr>
+<td>issapce()</td>
+<td>检测字符串是否只由空格组成。若字符串中只包含空格，则返回 True，否则返回 False</td>
+<td>str.isspace() -&gt; bool 返回值为布尔类型（True,False）</td>
+</tr>
+<tr>
+<td>istitle()</td>
+<td>检测判断字符串中所有单词的首字母是否为大写，且其它字母是否为小写，字符串中可以存在其它非字母的字符。若字符串中所有单词的首字母为大写，且其它字母为小写，则返回 True，否则返回 False.</td>
+<td>str.istitle() -&gt; bool 返回值为布尔类型（True,False）</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>find和index都可以查找指定字符字符串的下标，不同点为find查找的字符不存在时输出-1，而index直接报错</li>
+</ul>
+<h3 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h3><h4 id="认识列表"><a href="#认识列表" class="headerlink" title="认识列表:"></a>认识列表:</h4><p>names = [“Alise”, 123, None, [1, 2, 3], {“name”: “张珊”}, 999, 110]</p>
+<blockquote>
+<p>我们将由中括号包裹的代码块称作列表，为了方便对裂变进行操作，我们将列表赋值给了变量names。注意，在特定情况下，变量需要先声明。变量中的每一个数据称作元素，元素可以为任意类型。</p>
+</blockquote>
+<h4 id="列表的常见操作："><a href="#列表的常见操作：" class="headerlink" title="列表的常见操作："></a>列表的常见操作：</h4><table>
+<thead>
+<tr>
+<th>操作方法</th>
+<th>作用</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>append()</td>
+<td>用于在列表末尾追加新的对象</td>
+<td>a = [1, 2, 3]<br/>a.append(4)<br/><br/>result: [1, 2, 3, 4]</td>
+</tr>
+<tr>
+<td>insert()</td>
+<td>方法用于将对象插入到列表中</td>
+<td>a = [1, 2, 3]<br/>a.insert(0, ‘aa’)<br/><br/>result: [‘aa’, 1, 2,3]</td>
+</tr>
+<tr>
+<td>extend()</td>
+<td>方法可以在列表的末尾一次性追加另一个序列中的多个值</td>
+<td>a = [1, 2, 3]<br/>b = [4, 5, 6]<br/>a.extend(b)<br/><br/>result: [1, 2, 3, 4, 5, 6]</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>方法统计某个元素在列表中出现的次数</td>
+<td>a = [‘aa’, ‘bb’, ‘cc’, ‘aa’, ‘aa’]<br/>print(a.count(‘aa’))<br/><br/>result: 3</td>
+</tr>
+<tr>
+<td>index()</td>
+<td>函数用于从列表中找出某个值第一个匹配项的索引位置</td>
+<td>a = [1, 2, 3, 1]<br/>print(a.index(1))<br/><br/>result: 0</td>
+</tr>
+<tr>
+<td>in or not in</td>
+<td>返回bool类型的结果 True 或者 False</td>
+<td>list = [‘aa’, ‘bb’, ‘cc’, ‘aa’, ‘aa’]<br/> print(“a” in list)<br/> <em># True</em></td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>方法会移除列表中的一个元素（默认是最后一个），并且返回该元素的值</td>
+<td>a = [1, 2, 3]<br/>a.pop()<br/>result: [1, 2] <br/>a.pop(0)<br/>result: [2]</td>
+</tr>
+<tr>
+<td>remove()</td>
+<td>方法用于移除列表中某一个值的第一个匹配项</td>
+<td>a = [‘aa’, ‘bb’, ‘cc’, ‘aa’]<br/>a.remove(‘aa’)<br/><br/>result: [‘bb’, ‘cc’, ‘aa’]</td>
+</tr>
+<tr>
+<td>clear()</td>
+<td>清除列表中所有的元素</td>
+<td>list= [“aa”, “bb”, “cc”, “dd”, “ee”, “ff”]<br/>list.clear()<br/> print(list) <br/><em># 运行结果:[ ]</em></td>
+</tr>
+<tr>
+<td>del()</td>
+<td>删除整个列表</td>
+<td>list= [“aa”, “bb”, “cc”, “dd”, “ee”, “ff”] <br/>del list<br/> print(list)  <em>#  报错 name ‘list’ is not defined</em></td>
+</tr>
+<tr>
+<td>reverse()</td>
+<td>方法将列表中的元素反向存放</td>
+<td>a = [‘a’, ‘b’, ‘c’]<br/>a.reverse()<br/><br/>result: [‘c’, ‘b’, ‘a’]</td>
+</tr>
+<tr>
+<td>enumerate()</td>
+<td>函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中</td>
+<td>li = [11, 22, 33]<br/>for k,v in enumerate(li, 1):<br/>   print(k, v)</td>
+</tr>
+<tr>
+<td>len()</td>
+<td>返回一个列表的长度</td>
+<td>names = [“Alise”, 123, None, [1, 2, 3], {“name”: “张珊”}, 999, 110] <br/>print(len(names)) <br/><em># 7</em></td>
+</tr>
+<tr>
+<td>sort()和sorted()</td>
+<td>方法用于在原位置对列表进行排序，意外着改变原来的列表，让其中的元素按一定顺序排列</td>
+<td># 对字母进行排序：<br/>nums = [“a”, “b”, “c”, “e”, “z”, “x”]<br/>nums.sort(reverse=True)  <br/>print(nums)  # [‘z’, ‘x’, ‘e’, ‘c’, ‘b’, ‘a’]<br/>#  [‘z’, ‘x’, ‘e’, ‘c’, ‘b’, ‘a’]<br/><br/># 对数字进行排序：<br/>nums = [3, 9, 15, 51, 75, 6, 1, 4, 45]<br/>nums.sort(reverse=True)<br/>print(nums) # [75, 51, 45, 15, 9, 6, 4, 3, 1]<br/></td>
+</tr>
+</tbody></table>
+<p><strong>列表推导式</strong>（又称列表解析式）提供了一种简明扼要的方法来创建列表。</p>
+<p>它的结构是在一个中括号里包含一个表达式，然后是一个for语句，然后是 0 个或多个 for 或者 if 语句。那个表达式可以是任意的，意思是你可以在列表中放入任意类型的对象。返回结果将是一个新的列表，在这个以 if 和 for 语句为上下文的表达式运行完成之后产生。</p>
+<p>列表推导式的执行顺序：各语句之间是嵌套关系，左边第二个语句是最外层，依次往右进一层，左边第一条语句是最后一层</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[x*y <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>) <span class="keyword">if</span> x &gt; <span class="number">2</span> <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">4</span>) <span class="keyword">if</span> y &lt; <span class="number">3</span>]</span><br><span class="line"><span class="comment"># 他的执行顺序是：</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">if</span> x &gt; <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">4</span>)</span><br><span class="line">            <span class="keyword">if</span> y &lt; <span class="number">3</span></span><br><span class="line">                x*y</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>注意</strong>：</p>
+<ul>
+<li>sort只可对列表进行操作，而sorted可对所有可迭代对象使用，且<strong>sort</strong> 和 <strong>sorted</strong> 都有两个参数 ，第一个参数:<strong>key=None</strong>默认为空,可以是自定义函数,系统函数,或者<strong>lambda匿名函数</strong>  ，第二个参数是<strong>reverse=Fals</strong> 默认为<strong>False</strong>表示不反转，即从小到大的顺序</li>
+</ul>
+<h3 id="元祖："><a href="#元祖：" class="headerlink" title="元祖："></a>元祖：</h3><blockquote>
+<p>元组的定义由（）定义，相邻元素之间采用，进行分割，在形式上，可以称为不可变的列表</p>
+<p>元组是<strong>不可变类型</strong>，无法对其中的元素进行单独的修改和增加</p>
+</blockquote>
+<h4 id="元祖的常见操作"><a href="#元祖的常见操作" class="headerlink" title="元祖的常见操作"></a>元祖的常见操作</h4><table>
+<thead>
+<tr>
+<th>操作方法</th>
+<th>作用</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>del</td>
+<td>元组的删除(由于元祖不可变，所以这里是删除整个元祖)</td>
+<td>tu1 = (‘123’, ‘元组’, [1, 2, 3], {‘name’: ‘zhou’, ‘age’: 18}) del tu1</td>
+</tr>
+<tr>
+<td>count</td>
+<td>查找的为某个元素在元组中出现的次数</td>
+<td>tu = (11, 22, 33, 44, 55, 44, 33, 22, 11) <br/> print(tu.count(22))  <br/><br/><em># 输出结果</em> 2</td>
+</tr>
+<tr>
+<td>index</td>
+<td>查找的为元素的索引值，第一个参数代表需要查找的元素，第二个参数可以指定从哪个索引值开始查找</td>
+<td>tu = (11, 22, 33, 44, 55, 44, 33, 22, 11)<br/>print(tu.index(44))<br/>print(tu.index(44, 4))<br/><br/># 输出结果<br/>3<br/>5</td>
+</tr>
+<tr>
+<td>通过索引取值</td>
+<td>通过切片的方式获取指定的元素，第一个参数为开始索引，第二个参数为结束索引，第三个参数为步长</td>
+<td>tu = (11, 22, 33, 44, 55, 44, 33, 22, 11)<br/># 通过索引取出索引为3的值<br/>print(tu[3])<br/>print(tu[2:8:2])<br/><br/># 输出结果<br/>44<br/></td>
+</tr>
+</tbody></table>
+<p><strong>修改元组元素</strong></p>
+<p>虽然我们开始就说到元组无法进行单独的修改，但是我们可以对原组进行重新赋值，拼接等操作达到修改元组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tu = (<span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">44</span>, <span class="number">33</span>, <span class="number">22</span>, <span class="number">11</span>)</span><br><span class="line"><span class="comment"># 给元组重新赋值</span></span><br><span class="line">tu = (<span class="number">77</span>, <span class="number">88</span>, <span class="number">99</span>)</span><br><span class="line"><span class="built_in">print</span>(tu)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用元组进行拼接得到新元祖，注意，拼接的类型一定要为元组格式</span></span><br><span class="line">tu1 = (<span class="number">33</span>, <span class="number">44</span>, <span class="number">55</span>)</span><br><span class="line">tu2 = (<span class="number">66</span>, <span class="number">77</span>, <span class="number">88</span>)</span><br><span class="line">tu1 = tu1 + tu2</span><br><span class="line"><span class="built_in">print</span>(tu1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">(<span class="number">77</span>, <span class="number">88</span>, <span class="number">99</span>)</span><br><span class="line">(<span class="number">33</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">66</span>, <span class="number">77</span>, <span class="number">88</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>元组的拆包</strong></p>
+<p>在元组有多个元素的时候，我们可以进行元组拆包来分别得到元组的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tu = (<span class="number">77</span>, <span class="number">88</span>, <span class="number">99</span>)</span><br><span class="line"><span class="comment"># 有几个元素就用几个变量接收</span></span><br><span class="line">a, b, c = tu</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="number">77</span></span><br><span class="line"><span class="number">88</span></span><br><span class="line"><span class="number">99</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>元组推导式</strong></p>
+<p>元组推导式和我们的列表推导式是一样的，只需要修将列表的[]改为()就可以了，此处我们不做过多的演示，详细内容请看列表（list）的常用操作</p>
+<h3 id="字典："><a href="#字典：" class="headerlink" title="字典："></a>字典：</h3><p><strong>字典的定义：</strong></p>
+<p>​        <strong>字典</strong>是一种<strong>可变容器模型</strong>，且可存储任意类型对象。字典的每个键值 <strong>key=&gt;value</strong> 对用冒号 <strong>:</strong> 分割，每个键值对之间用逗号 <strong>,</strong> 分割，整个字典包括在花括号 <strong>{}</strong> 中 ,格式如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;key1 : value1, key2 : value2 &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>字典的常见操作：</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作方法</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查看元素</td>
+<td>print(字典名[key值]) #获取不存在的key会发生异常 print(字典名.get(key值)) #获取到不存在的key不会发生异常</td>
+</tr>
+<tr>
+<td>修改元素</td>
+<td>字典名[key值] 赋予新的值即可<br />dict[key] = “runtu”</td>
+</tr>
+<tr>
+<td>添加元素</td>
+<td>字典名[key值] = “qiuqiu” #key值不存在<br />dict[key] = “qiuqiu”</td>
+</tr>
+<tr>
+<td>删除元素</td>
+<td>del 字典[key值]<br />del dict[key]</td>
+</tr>
+<tr>
+<td>删除字典</td>
+<td>del 字典名<br />del dict</td>
+</tr>
+<tr>
+<td>清空字典</td>
+<td>字典名.clear<br />dict.clear</td>
+</tr>
+<tr>
+<td>测量键值对的长度或个数</td>
+<td>len(字典名)<br />len(dict)</td>
+</tr>
+<tr>
+<td>返回一个字典的所以key的列表</td>
+<td>print(字典名.keys)<br />print(dict.keys)</td>
+</tr>
+<tr>
+<td>返回一个包含字典所有value的列表</td>
+<td>print(字典名.values)<br />print(dict.values)</td>
+</tr>
+<tr>
+<td>返回一个包含所有（键，值）元组的列表</td>
+<td>print(字典名.items())<br />print(dict.items())</td>
+</tr>
+<tr>
+<td>.has_key查看key值是否在字典内，返回True(存在)，返回False(不存在)</td>
+<td>字典名.has_key(key值)<br />dict.has_key(key)</td>
+</tr>
+</tbody></table>
+<p><strong>字典的特性：</strong></p>
+<p>字典值可以没有限制地取任何python对象，既可以是标准的对象，也可以是用户定义的，但键不行。</p>
+<ol>
+<li><p>不允许同一个键出现两次。创建时如果同一个键被赋值两次，后一个值会被记住，如下实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dict</span> = &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Manni&#x27;</span>&#125; </span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;dict[&#x27;Name&#x27;]: &quot;</span>, <span class="built_in">dict</span>[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果：</span></span><br><span class="line"><span class="built_in">dict</span>[<span class="string">&#x27;Name&#x27;</span>]:  Manni</span><br></pre></td></tr></table></figure></li>
+<li><p>键必须不可变，所以可以用数字，字符串或元组充当，所以用列表就不行，如下实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dict</span> = &#123;[<span class="string">&#x27;Name&#x27;</span>]: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>&#125; </span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>)</span><br><span class="line"><span class="comment">#输出结果（报错信息）：</span></span><br><span class="line"><span class="built_in">dict</span> = &#123;[<span class="string">&#x27;Name&#x27;</span>]: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>&#125;</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: unhashable <span class="built_in">type</span>: <span class="string">&#x27;list&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>Python字典包含了以下内置函数：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">cmp(dict1, dict2)</td>
+<td>比较两个字典元素。</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">len(dict)</td>
+<td>计算字典元素个数，即键的总数。</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">str(dict)</td>
+<td>输出字典可打印的字符串表示。</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">type(variable)</td>
+<td>返回输入的变量类型，如果变量是字典就返回字典类型。</td>
+</tr>
+</tbody></table>
+<p><strong>Python字典包含了以下内置方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">dict.clear()</td>
+<td>删除字典内所有元素</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">dict.copy()</td>
+<td>返回一个字典的浅复制</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">dict.fromkeys(seq[, val])</td>
+<td>创建一个新字典，以序列 seq 中元素做字典的键，val 为字典所有键对应的初始值</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">dict.get(key, default=None)</td>
+<td>返回指定键的值，如果值不在字典中返回default值</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">dict.has_key(key)</td>
+<td>如果键在字典dict里返回true，否则返回false</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">dict.items()</td>
+<td>以列表返回可遍历的(键, 值) 元组数组</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">dict.keys()</td>
+<td>以列表返回一个字典所有的键</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">dict.setdefault(key, default=None)</td>
+<td>和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left">dict.update(dict2)</td>
+<td>把字典dict2的键/值对更新到dict里</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">dict.values()</td>
+<td>以列表返回字典中的所有值</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">pop(key[,default])</td>
+<td>删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。</td>
+</tr>
+<tr>
+<td align="left">12</td>
+<td align="left">popitem()</td>
+<td>返回并删除字典中的最后一对键和值。</td>
+</tr>
+</tbody></table>
+<h3 id="集合："><a href="#集合：" class="headerlink" title="集合："></a>集合：</h3><p><strong>集合的定义：</strong></p>
+<blockquote>
+<p>集合（set）是一个无序的不重复元素序列 </p>
+<p>可以使用大括号 { } 或者 set( ) 函数创建集合</p>
+<p>创建一个空集合必须用 set( ) 而不是 { }，因为 { } 是用来创建一个空字典</p>
+</blockquote>
+<p><strong>集合的常见操作：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>add</td>
+<td>增加元素</td>
+<td>a_set = {1, 2, 3, 4, 5}<br/>a_set.add(6)<br/>a_set.add(“a”)<br/>print(a_set)<br/>   {1, 2, 3, 4, 5, 6, ‘a’}</td>
+</tr>
+<tr>
+<td>update</td>
+<td>把要传入的元素拆分，作为个体传入到集合中</td>
+<td>a_set = {1, 2, 3, 4, 5}<br/>b_set = {6, 7, 8, 9}<br/>a_set.update(b_set)<br/>print(a_set)<br/>  {1, 2, 3, 4, 5, 6, 7, 8, 9}</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>删除集合中的元素 如果有，直接删除 如果没有 程序报错</td>
+<td>c_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}<br/>c_set.remove(8)<br/>print(c_set)<br/>  {1, 2, 3, 4, 5, 6, 7, 9}</td>
+</tr>
+<tr>
+<td>pop</td>
+<td>随机删除集合中的元素，如果set1没有元素程序报错</td>
+<td>c_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}<br/>c_set.pop()<br/>print(c_set)<br/>#{2, 3, 4, 5, 6, 7, 8, 9}</td>
+</tr>
+<tr>
+<td>discard</td>
+<td>如果元素存在 直接删除 如 果元素不存在 不做任何操作</td>
+<td>c_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}<br/>c_set.discard(5)<br/>print(c_set)<br/>#{1, 2, 3, 4, 6, 7, 8, 9}</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>集合的交集和并集：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>交集</td>
+<td>set1 = {1, 2, 3, 4}<br/>set2 = {3, 4, 5, 6}<br/>new_set = set1 &amp; set2<br/>print(new_set)</td>
+</tr>
+<tr>
+<td>并集</td>
+<td>set1 = {1, 2, 3, 4}<br/><br/>set2 = {3, 4, 5, 6}<br/>new_set = set1 | set2<br/>print(new_set)</td>
+</tr>
+</tbody></table>
+<p><strong>Python 集合的优势：</strong></p>
+<p>由于集合中的元素不能出现多次，这使得集合在很大程度上能够高效地从列表或元组中删除重复值，并执行取并集、交集等常见的的数学操作</p>
+<p><strong>注意：</strong></p>
+<p>集合分为<strong>可变集合</strong>和<strong>不可变集合</strong>，</p>
+<p>不可变集的一个主要的缺点是：由于它们是不可变的，这意味着你不能向其中添加元素或者删除其中的元素</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">qinshang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://www.qszjq.xyz/2019/08/02/Python%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">http://www.qszjq.xyz/2019/08/02/Python%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/03/25/zKGVZdN4bJDAPvj.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/25/hello-world/"><img class="prev-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hello World</div></div></a></div><div class="next-post pull-right"><a href="/2019/07/12/%E6%A0%88/"><img class="next-cover" src="https://api.vvhan.com/api/acgimg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">栈</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/%E5%8D%9A%E5%AE%A2%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">qinshang</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">数字：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">字符串：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E8%A7%81%E7%9A%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">字符串常见的操作方法：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">列表：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E5%88%97%E8%A1%A8"><span class="toc-number">3.1.</span> <span class="toc-text">认识列表:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%9A%84%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">列表的常见操作：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%A5%96%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">元祖：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E7%A5%96%E7%9A%84%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="toc-number">4.1.</span> <span class="toc-text">元祖的常见操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">字典：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">集合：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2021/03/25/hello-world/" title="Hello World">Hello World</a><time datetime="2021-03-25T01:37:32.085Z" title="Created 2021-03-25 09:37:32">2021-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/08/02/Python%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="Python中常见的数据类型"><img src="https://i.loli.net/2021/03/25/zKGVZdN4bJDAPvj.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python中常见的数据类型"/></a><div class="content"><a class="title" href="/2019/08/02/Python%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="Python中常见的数据类型">Python中常见的数据类型</a><time datetime="2019-08-02T03:33:29.000Z" title="Created 2019-08-02 11:33:29">2019-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/07/12/%E6%A0%88/" title="栈"><img src="https://api.vvhan.com/api/acgimg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="栈"/></a><div class="content"><a class="title" href="/2019/07/12/%E6%A0%88/" title="栈">栈</a><time datetime="2019-07-12T01:42:31.000Z" title="Created 2019-07-12 09:42:31">2019-07-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/06/25/MongoDB%E7%9A%84%E4%BD%BF%E7%94%A8/" title="MongoDB的使用"><img src="https://i.loli.net/2021/03/25/XLApPf9Za5VWv7M.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MongoDB的使用"/></a><div class="content"><a class="title" href="/2019/06/25/MongoDB%E7%9A%84%E4%BD%BF%E7%94%A8/" title="MongoDB的使用">MongoDB的使用</a><time datetime="2019-06-25T06:30:07.000Z" title="Created 2019-06-25 14:30:07">2019-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/06/16/%E8%87%AA%E5%BB%BA%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="自建消息队列并设置加权"><img src="https://api.vvhan.com/api/acgimg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自建消息队列并设置加权"/></a><div class="content"><a class="title" href="/2019/06/16/%E8%87%AA%E5%BB%BA%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="自建消息队列并设置加权">自建消息队列并设置加权</a><time datetime="2019-06-16T10:26:57.000Z" title="Created 2019-06-16 18:26:57">2019-06-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> qinshang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script>#樱花<script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script>#樱花<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
