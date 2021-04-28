@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Git的简单介绍 | 欢迎来到赵佳琪的博客</title><meta name="keywords" content="类型,Git"><meta name="author" content="qinshang"><meta name="copyright" content="qinshang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Gitee 提供免费的 Git 仓库，还集成了代码质量检测、项目演示等功能。对于团队协作开发，Gitee 还提供了项目管理、代码托管、文档管理的服务，5 人以下小团队免费。 接下来我们学习一下如何使用 Gitee。 Git 的工作流程。一般工作流程如下：  克隆 Git 资源作为工作目录。  在克隆的资源上添加或修改文件。  如果其他人修改了，你可以更新资源。  在提交前查看修改。  提交修改。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git的简单介绍">
+<meta property="og:url" content="http://www.qszjq.xyz/2020/03/20/Git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="欢迎来到赵佳琪的博客">
+<meta property="og:description" content="Gitee 提供免费的 Git 仓库，还集成了代码质量检测、项目演示等功能。对于团队协作开发，Gitee 还提供了项目管理、代码托管、文档管理的服务，5 人以下小团队免费。 接下来我们学习一下如何使用 Gitee。 Git 的工作流程。一般工作流程如下：  克隆 Git 资源作为工作目录。  在克隆的资源上添加或修改文件。  如果其他人修改了，你可以更新资源。  在提交前查看修改。  提交修改。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/04/28/R57QqEBanLb3tgU.jpg">
+<meta property="article:published_time" content="2020-03-20T02:18:34.000Z">
+<meta property="article:modified_time" content="2021-04-28T02:08:52.103Z">
+<meta property="article:author" content="qinshang">
+<meta property="article:tag" content="类型">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/28/R57QqEBanLb3tgU.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.qszjq.xyz/2020/03/20/Git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-28 10:08:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/friend_404.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/04/28/R57QqEBanLb3tgU.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">欢迎来到赵佳琪的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Git的简单介绍</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2020-03-20T02:18:34.000Z" title="undefined 2020-03-20 10:18:34">2020-03-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Git/">Git</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Gitee 提供免费的 Git 仓库，还集成了代码质量检测、项目演示等功能。对于团队协作开发，Gitee 还提供了项目管理、代码托管、文档管理的服务，5 人以下小团队免费。</p>
+<p>接下来我们学习一下如何使用 Gitee。</p>
+<h3 id="Git-的工作流程。"><a href="#Git-的工作流程。" class="headerlink" title="Git 的工作流程。"></a>Git 的工作流程。</h3><p>一般工作流程如下：</p>
+<ul>
+<li><p>克隆 Git 资源作为工作目录。</p>
+</li>
+<li><p>在克隆的资源上添加或修改文件。</p>
+</li>
+<li><p>如果其他人修改了，你可以更新资源。</p>
+</li>
+<li><p>在提交前查看修改。</p>
+</li>
+<li><p>提交修改。</p>
+</li>
+<li><p>在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。</p>
+<p><img src="https://i.loli.net/2021/04/28/BDLIqQbUdtZnXPa.png" alt="工作流程.png"></p>
+</li>
+</ul>
+<h3 id="首先登录Gitee"><a href="#首先登录Gitee" class="headerlink" title="首先登录Gitee"></a>首先登录Gitee</h3><p><a target="_blank" rel="noopener" href="https://gitee.com/">https://gitee.com/</a></p>
+<p><img src="https://i.loli.net/2021/04/28/nR6dvDUwruZBON4.png" alt="登陆.png"></p>
+<h3 id="新建仓库"><a href="#新建仓库" class="headerlink" title="新建仓库"></a>新建仓库</h3><p><img src="https://i.loli.net/2021/04/28/QNe8kugFd9OJmfa.png" alt="新建仓库.png"><br><img src="https://i.loli.net/2021/04/28/NrzF8ToejK25ntv.png" alt="新建仓库2.png"></p>
+<h2 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h2><p><strong>将存储库的内容克隆到本地</strong></p>
+<blockquote>
+<p>git clone 链接地址</p>
+</blockquote>
+<p><strong>首先,作为 git 的基础配置，作用是告诉 git 你是谁，你输入的信息将出现在你创建的提交中。然后初始化项目</strong></p>
+<blockquote>
+<p>git config - -global user.name “你的名字或昵称”<br>git config - -global user.email “你的邮箱”<br>git init</p>
+</blockquote>
+<p><strong>将所有内容添加到暂存区 .代表所有</strong></p>
+<blockquote>
+<p>git add .</p>
+</blockquote>
+<p><strong>存储库记录更改</strong></p>
+<blockquote>
+<p>git commit -m “更改说明”</p>
+</blockquote>
+<p><strong>将仓库和服务器连接</strong></p>
+<blockquote>
+<p>git remote add origin 链接地址</p>
+</blockquote>
+<p><strong>删除远程地址</strong></p>
+<blockquote>
+<p>git remote rm origin</p>
+</blockquote>
+<p><strong>将本地仓库提交到远程仓库</strong></p>
+<blockquote>
+<p>git push origin master</p>
+</blockquote>
+<p><strong>查看仓库当前的状态，显示有变更的文件。</strong></p>
+<blockquote>
+<p>git status</p>
+</blockquote>
+<p><strong>查看提交日志</strong></p>
+<blockquote>
+<p>git log</p>
+</blockquote>
+<p><strong>代码回退</strong></p>
+<blockquote>
+<p>git reset –hard 提交ID</p>
+</blockquote>
+<p><strong>回退完需要提交到线上 但是只需要提交头部</strong></p>
+<blockquote>
+<p>git push origin HEAD –force</p>
+<p>// force强制提交,注意：不能跳分支回退</p>
+</blockquote>
+<h3 id="Git-分支"><a href="#Git-分支" class="headerlink" title="Git 分支"></a>Git 分支</h3><h4 id="什么是分支"><a href="#什么是分支" class="headerlink" title="什么是分支"></a>什么是分支</h4><p>分支是为了将修改记录的整体流程分叉保存。分叉后的分支不受其他分支的影响，所以在同一个数据库里可以同时进行多个修改。<br>简单理解：可以理解为复仇者联盟里面的多元宇宙，各个宇宙之间互不影响，到某一时间点会合并</p>
+<h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><p>为了不受其他开发人员的影响，可以在主分支上建立自己专用的分支。<br>完成工作后，将自己分支上的修改合并到主分支。因为每一次提交的历史记录都会被保存，所以当发生问题时，定位和修改造成问题的提交就容易多了。</p>
+<h4 id="操作分支的简单命令"><a href="#操作分支的简单命令" class="headerlink" title="操作分支的简单命令"></a>操作分支的简单命令</h4><p><strong>查看所有分支</strong></p>
+<blockquote>
+<p>git branch -a</p>
+</blockquote>
+<p><strong>查看云端分支</strong></p>
+<blockquote>
+<p>git branch -r</p>
+</blockquote>
+<p><strong>拉取云端代码or分支</strong></p>
+<blockquote>
+<p>git pull</p>
+</blockquote>
+<p><strong>创建分支</strong></p>
+<blockquote>
+<p>git branch 分支名</p>
+</blockquote>
+<p><strong>切换分支</strong></p>
+<blockquote>
+<p>git checkout -b 或者git switch -c</p>
+</blockquote>
+<p><strong>合并某分支到当前分支</strong></p>
+<blockquote>
+<p>git merge 分支名 或者 git rebase 分支名</p>
+<p>merge可以保留所有提交，方便回滚，但不方便查看提交日志</p>
+<p>rebase 只保留主历史，线性历史，便于查看，但每次都会把平行的历史给抹掉</p>
+</blockquote>
+<p><strong>删除分支</strong></p>
+<blockquote>
+<p>git branch -d</p>
+</blockquote>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/cn/">https://backlog.com/git-tutorial/cn/</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">qinshang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://www.qszjq.xyz/2020/03/20/Git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">http://www.qszjq.xyz/2020/03/20/Git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%B1%BB%E5%9E%8B/">类型</a><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/04/28/R57QqEBanLb3tgU.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2019/10/20/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0ElasticSearch/"><img class="next-cover" src="https://i.loli.net/2021/04/27/7wNHKXtRCPFhoxv.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">基于python实现ElasticSearch</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/10/15/PostgerSQL/" title="PostgerSQL的介绍"><img class="cover" src="https://i.loli.net/2021/04/20/JcklWLKXN6UIF7s.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-10-15</div><div class="title">PostgerSQL的介绍</div></div></a></div><div><a href="/2019/09/12/集合(set)的用法和使用场景/" title="集合的用法和适用场景"><img class="cover" src="https://i.loli.net/2021/04/07/saMTbVmiuQARGnI.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-09-12</div><div class="title">集合的用法和适用场景</div></div></a></div><div><a href="/2019/10/18/ElasticSearch学习/" title="ElasticSearch学习"><img class="cover" src="https://i.loli.net/2021/04/28/U8YZfJEOikwm7KT.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-10-18</div><div class="title">ElasticSearch学习</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/friend_404.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">qinshang</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/15632404260/blogs.git"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E3%80%82"><span class="toc-number">1.</span> <span class="toc-text">Git 的工作流程。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E7%99%BB%E5%BD%95Gitee"><span class="toc-number">2.</span> <span class="toc-text">首先登录Gitee</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">新建仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number"></span> <span class="toc-text">git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-%E5%88%86%E6%94%AF"><span class="toc-number">1.</span> <span class="toc-text">Git 分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E6%94%AF"><span class="toc-number">1.1.</span> <span class="toc-text">什么是分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A5%BD%E5%A4%84"><span class="toc-number">1.2.</span> <span class="toc-text">好处</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%88%86%E6%94%AF%E7%9A%84%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">操作分支的简单命令</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/03/20/Git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" title="Git的简单介绍"><img src="https://i.loli.net/2021/04/28/R57QqEBanLb3tgU.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git的简单介绍"/></a><div class="content"><a class="title" href="/2020/03/20/Git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" title="Git的简单介绍">Git的简单介绍</a><time datetime="2020-03-20T02:18:34.000Z" title="Created 2020-03-20 10:18:34">2020-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/10/20/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0ElasticSearch/" title="基于python实现ElasticSearch"><img src="https://i.loli.net/2021/04/27/7wNHKXtRCPFhoxv.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于python实现ElasticSearch"/></a><div class="content"><a class="title" href="/2019/10/20/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0ElasticSearch/" title="基于python实现ElasticSearch">基于python实现ElasticSearch</a><time datetime="2019-10-20T02:40:31.000Z" title="Created 2019-10-20 10:40:31">2019-10-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/10/18/ElasticSearch%E5%AD%A6%E4%B9%A0/" title="ElasticSearch学习"><img src="https://i.loli.net/2021/04/28/U8YZfJEOikwm7KT.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ElasticSearch学习"/></a><div class="content"><a class="title" href="/2019/10/18/ElasticSearch%E5%AD%A6%E4%B9%A0/" title="ElasticSearch学习">ElasticSearch学习</a><time datetime="2019-10-18T03:33:21.000Z" title="Created 2019-10-18 11:33:21">2019-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/10/15/PostgerSQL/" title="PostgerSQL的介绍"><img src="https://i.loli.net/2021/04/20/JcklWLKXN6UIF7s.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PostgerSQL的介绍"/></a><div class="content"><a class="title" href="/2019/10/15/PostgerSQL/" title="PostgerSQL的介绍">PostgerSQL的介绍</a><time datetime="2019-10-15T01:56:31.000Z" title="Created 2019-10-15 09:56:31">2019-10-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/10/06/ECharts%E7%9A%84%E4%BD%BF%E7%94%A8/" title="ECharts 的使用"><img src="https://i.loli.net/2021/04/20/TSGlexpuCKQAL7D.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ECharts 的使用"/></a><div class="content"><a class="title" href="/2019/10/06/ECharts%E7%9A%84%E4%BD%BF%E7%94%A8/" title="ECharts 的使用">ECharts 的使用</a><time datetime="2019-10-06T02:32:14.000Z" title="Created 2019-10-06 10:32:14">2019-10-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> qinshang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script>#樱花<script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script>#樱花<script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
