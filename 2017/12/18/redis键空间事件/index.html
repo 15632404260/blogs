@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>redis键空间事件 | 欢迎来到赵佳琪的博客</title><meta name="keywords" content="类型,SQL"><meta name="author" content="qinshang"><meta name="copyright" content="qinshang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="启用键空间通知 默认情况下，禁用键空间事件通知，可以在redis.conf或redis-cli中启用12C:\Users\Lenovo&gt; redis-cli config set notify-keyspace-events KEAOK  该KEA字符串意味着每一个可能的事件被启用  检查事件是否正常123C:\Users\Lenovo&gt;redis-cli --csv psubscri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis键空间事件">
+<meta property="og:url" content="http://www.qszjq.xyz/2017/12/18/redis%E9%94%AE%E7%A9%BA%E9%97%B4%E4%BA%8B%E4%BB%B6/index.html">
+<meta property="og:site_name" content="欢迎来到赵佳琪的博客">
+<meta property="og:description" content="启用键空间通知 默认情况下，禁用键空间事件通知，可以在redis.conf或redis-cli中启用12C:\Users\Lenovo&gt; redis-cli config set notify-keyspace-events KEAOK  该KEA字符串意味着每一个可能的事件被启用  检查事件是否正常123C:\Users\Lenovo&gt;redis-cli --csv psubscri">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/03/25/TFsRrz2NpYdkcbO.jpg">
+<meta property="article:published_time" content="2017-12-18T04:18:05.000Z">
+<meta property="article:modified_time" content="2021-04-28T02:52:05.947Z">
+<meta property="article:author" content="qinshang">
+<meta property="article:tag" content="类型">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/25/TFsRrz2NpYdkcbO.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.qszjq.xyz/2017/12/18/redis%E9%94%AE%E7%A9%BA%E9%97%B4%E4%BA%8B%E4%BB%B6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-28 10:52:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/friend_404.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/03/25/TFsRrz2NpYdkcbO.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">欢迎来到赵佳琪的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">redis键空间事件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2017-12-18T04:18:05.000Z" title="undefined 2017-12-18 12:18:05">2017-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Redis/">Redis</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="启用键空间通知"><a href="#启用键空间通知" class="headerlink" title="启用键空间通知"></a>启用键空间通知</h2><ul>
+<li><h4 id="默认情况下，禁用键空间事件通知，可以在redis-conf或redis-cli中启用"><a href="#默认情况下，禁用键空间事件通知，可以在redis-conf或redis-cli中启用" class="headerlink" title="默认情况下，禁用键空间事件通知，可以在redis.conf或redis-cli中启用"></a>默认情况下，禁用键空间事件通知，可以在redis.conf或redis-cli中启用</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Lenovo&gt; redis-cli config set notify-keyspace-events KEA</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p><code>该KEA字符串意味着每一个可能的事件被启用</code></p>
+</li>
+<li><h4 id="检查事件是否正常"><a href="#检查事件是否正常" class="headerlink" title="检查事件是否正常"></a>检查事件是否正常</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Lenovo&gt;redis-cli --csv psubscribe &#x27;*&#x27;</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">&quot;psubscribe&quot;,&quot;&#x27;*&#x27;&quot;,1</span><br></pre></td></tr></table></figure>
+
+<p><code>psubscribe &#39;*&#39;意味着我们想要使用模式订阅所有事件*</code></p>
+</li>
+<li><h4 id="打开终端2输入-set-key1-value1"><a href="#打开终端2输入-set-key1-value1" class="headerlink" title="打开终端2输入 set key1 value1"></a>打开终端2输入 set key1 value1</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Lenovo&gt;redis-cli</span><br><span class="line">127.0.0.1:6379&gt; set key1 value1</span><br><span class="line">OK</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="再打开终端1会看到："><a href="#再打开终端1会看到：" class="headerlink" title="再打开终端1会看到："></a>再打开终端1会看到：</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Lenovo&gt;redis-cli --csv psubscribe <span class="string">&#x27;*&#x27;</span>     </span><br><span class="line">Reading messages... (press Ctrl-C to quit)  </span><br><span class="line"><span class="string">&quot;psubscribe&quot;</span>,<span class="string">&quot;*&quot;</span>,1</span><br><span class="line"><span class="string">&quot;pmessage&quot;</span>,<span class="string">&quot;*&quot;</span>,<span class="string">&quot;__keyspace@0__:key1&quot;</span>,<span class="string">&quot;set&quot;</span></span><br><span class="line"><span class="string">&quot;pmessage&quot;</span>,<span class="string">&quot;*&quot;</span>,<span class="string">&quot;__keyevent@0__:set&quot;</span>,<span class="string">&quot;key1</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="事件的类型"><a href="#事件的类型" class="headerlink" title="事件的类型"></a>事件的类型</h2><p>对于每个修改数据库的操作，键空间通知都会发送<strong>两种不同类型的事件</strong><br>比如说，对0号数据库的键 mykey 执行 DEL key [key …] 命令时，系统将分发两条消息，相当于执行以下两个 PUBLISH channel message 命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PUBLISH __keyspace@0__:mykey del</span><br><span class="line">PUBLISH __keyevent@0__:mykey zst</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>keyspace@0</strong>:mykey 可以接收 0 号数据库中所有修改键 mykey 的事件<br><strong>keyevent@0</strong>:del 则可以接收 0 号数据库中所有执行 del 命令的键<br>以 keyspace 为前缀的频道被称为键空间通知<br>以 keyevent 为前缀的频道则被称为键事件通知</p>
+</blockquote>
+<h2 id="键空间配置"><a href="#键空间配置" class="headerlink" title="键空间配置"></a>键空间配置</h2><blockquote>
+<p>因为开启键空间通知功能需要消耗一些CPU，所以在默认配置下，该功能处于关闭状态<br>可以通过修改 redis.conf 文件，或者直接使用 CONFIG SET 命令来开启或关闭键空间通知功能:</p>
+</blockquote>
+<ul>
+<li>当 notify-keyspace-events 选项的参数为空字符串时，功能关闭</li>
+<li>当参数不是空字符串时，功能开启</li>
+</ul>
+<h4 id="notify-keyspace-events-的参数可以是以下字符的任意组合，-它指定了服务器该发送哪些类型的通知："><a href="#notify-keyspace-events-的参数可以是以下字符的任意组合，-它指定了服务器该发送哪些类型的通知：" class="headerlink" title="notify-keyspace-events 的参数可以是以下字符的任意组合， 它指定了服务器该发送哪些类型的通知："></a>notify-keyspace-events 的参数可以是以下字符的任意组合， 它指定了服务器该发送哪些类型的通知：</h4><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>通知</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>K</td>
+<td>键空间通知，所有通知以 <strong>keyspace@</strong> 为前缀</td>
+</tr>
+<tr>
+<td>E</td>
+<td>键事件通知，所有通知以 <strong>keyevent@</strong> 为前缀</td>
+</tr>
+<tr>
+<td>g</td>
+<td>DEL 、 EXPIRE 、 RENAME 等类型无关的通用命令的通知</td>
+</tr>
+<tr>
+<td>$</td>
+<td>字符串命令的通知</td>
+</tr>
+<tr>
+<td>l</td>
+<td>列表命令的通知</td>
+</tr>
+<tr>
+<td>s</td>
+<td>集合命令的通知</td>
+</tr>
+<tr>
+<td>h</td>
+<td>哈希命令的通知</td>
+</tr>
+<tr>
+<td>z</td>
+<td>有序集合命令的通知</td>
+</tr>
+<tr>
+<td>x</td>
+<td>过期事件：每当有过期键被删除时发送</td>
+</tr>
+<tr>
+<td>e</td>
+<td>驱逐(evict)事件：每当有键因为 maxmemory 政策而被删除时发送</td>
+</tr>
+<tr>
+<td>A</td>
+<td>参数 g$lshzxe 的别名，即all</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><ul>
+<li><h2 id="One"><a href="#One" class="headerlink" title="One"></a>One</h2><ul>
+<li><h4 id="redis发布所有通知，客户端1001订阅所有消息"><a href="#redis发布所有通知，客户端1001订阅所有消息" class="headerlink" title="redis发布所有通知，客户端1001订阅所有消息"></a>redis发布所有通知，客户端1001订阅所有消息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set notify-keyspace-events KEA</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; psubscribe __key*@0__:*</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line"> &quot;psubscribe&quot;</span><br><span class="line"> &quot;__key*@0__:*&quot;</span><br><span class="line"> (integer) 1</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="在客户端1002上执行set和del命令"><a href="#在客户端1002上执行set和del命令" class="headerlink" title="在客户端1002上执行set和del命令"></a>在客户端1002上执行set和del命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set msg &quot;hi sister&quot;</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; del msg</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; del msg</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="客户端1001的内容如下"><a href="#客户端1001的内容如下" class="headerlink" title="客户端1001的内容如下"></a>客户端1001的内容如下</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__key*@0__:*&quot;</span><br><span class="line">&quot;__keyspace@0__:msg&quot;</span><br><span class="line">&quot;set&quot;</span><br><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__key*@0__:*&quot;</span><br><span class="line">&quot;__keyevent@0__:set&quot;</span><br><span class="line">&quot;msg&quot;</span><br><span class="line">    </span><br><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__key*@0__:*&quot;</span><br><span class="line">&quot;__keyspace@0__:msg&quot;</span><br><span class="line">&quot;del&quot;</span><br><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__key*@0__:*&quot;</span><br><span class="line">&quot;__keyevent@0__:del&quot;</span><br><span class="line">&quot;msg&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">客户端1001收到了keyspace和keyevent消息</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h2 id="Two"><a href="#Two" class="headerlink" title="Two"></a>Two</h2><ul>
+<li><h4 id="redis仅发布keyspace通知，而客户端1001订阅所有消息类型"><a href="#redis仅发布keyspace通知，而客户端1001订阅所有消息类型" class="headerlink" title="redis仅发布keyspace通知，而客户端1001订阅所有消息类型"></a>redis仅发布keyspace通知，而客户端1001订阅所有消息类型</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set notify-keyspace-events KA</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; psubscribe __key*@0__:*</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line"> &quot;psubscribe&quot;</span><br><span class="line"> &quot;__key*@0__:*&quot;</span><br><span class="line"> (integer) 1</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="在客户端1002也执行以上操作，再来看客户端1001的内容"><a href="#在客户端1002也执行以上操作，再来看客户端1001的内容" class="headerlink" title="在客户端1002也执行以上操作，再来看客户端1001的内容"></a>在客户端1002也执行以上操作，再来看客户端1001的内容</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__key*@0__:*&quot;</span><br><span class="line">&quot;__keyspace@0__:msg&quot;</span><br><span class="line">&quot;set&quot;</span><br><span class="line">    </span><br><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__key*@0__:*&quot;</span><br><span class="line">&quot;__keyspace@0__:msg&quot;</span><br><span class="line">&quot;del&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">客户端1001订阅了所有消息，但是Redis仅发布了keyspace事件 在客户端1002上执行了两次del操作，只有第一个del成功执行了，从而产生了一个事件</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h2 id="Three"><a href="#Three" class="headerlink" title="Three"></a>Three</h2><ul>
+<li><h4 id="redis发布所有通知，客户端1001仅订阅keyspace消息"><a href="#redis发布所有通知，客户端1001仅订阅keyspace消息" class="headerlink" title="redis发布所有通知，客户端1001仅订阅keyspace消息"></a>redis发布所有通知，客户端1001仅订阅keyspace消息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set notify-keyspace-events KEA</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; psubscribe __keyspace@0__:*</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line"> &quot;psubscribe&quot;</span><br><span class="line"> &quot;__keyspace@0__:*&quot;</span><br><span class="line"> (integer) 1</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="在客户端1002也执行以上操作，再来看客户端1001的内容-1"><a href="#在客户端1002也执行以上操作，再来看客户端1001的内容-1" class="headerlink" title="在客户端1002也执行以上操作，再来看客户端1001的内容"></a>在客户端1002也执行以上操作，再来看客户端1001的内容</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> &quot;pmessage&quot;</span><br><span class="line"> &quot;__keyspace@0__:*&quot;</span><br><span class="line"> &quot;__keyspace@0__:msg&quot;</span><br><span class="line"> &quot;set&quot;</span><br><span class="line"></span><br><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__keyspace@0__:*&quot;</span><br><span class="line">&quot;__keyspace@0__:msg&quot;</span><br><span class="line">&quot;del&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">客户端1001收到了keyspace消息</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h2 id="Four"><a href="#Four" class="headerlink" title="Four"></a>Four</h2><ul>
+<li><h4 id="redis仅发布字符串特定类型的通知，客户端1001订阅所有类型的消息"><a href="#redis仅发布字符串特定类型的通知，客户端1001订阅所有类型的消息" class="headerlink" title="redis仅发布字符串特定类型的通知，客户端1001订阅所有类型的消息"></a>redis仅发布字符串特定类型的通知，客户端1001订阅所有类型的消息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set notify-keyspace-events KE$</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt;  psubscribe __key*@0__:*</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line"> &quot;psubscribe&quot;</span><br><span class="line"> &quot;__key*@0__:*&quot;</span><br><span class="line"> (integer) 1</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="在客户端1002上执行lpush、set和del命令"><a href="#在客户端1002上执行lpush、set和del命令" class="headerlink" title="在客户端1002上执行lpush、set和del命令"></a>在客户端1002上执行lpush、set和del命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush alist 1 2 3</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; set msg &quot;hello brother&quot;</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; del msg</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="客户端1001的内容如下-1"><a href="#客户端1001的内容如下-1" class="headerlink" title="客户端1001的内容如下"></a>客户端1001的内容如下</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__key*@0__:*&quot;</span><br><span class="line">&quot;__keyspace@0__:msg&quot;</span><br><span class="line">&quot;set&quot;</span><br><span class="line"></span><br><span class="line">&quot;pmessage&quot;</span><br><span class="line">&quot;__key*@0__:*&quot;</span><br><span class="line">&quot;__keyevent@0__:set&quot;</span><br><span class="line">&quot;msg&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">针对字符串，产生了keyspace和keyevent类型的消息 针对列表的lpush命令并没有产生消息 del命令是非特定类型的命令，也没有产生消息</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">qinshang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://www.qszjq.xyz/2017/12/18/redis%E9%94%AE%E7%A9%BA%E9%97%B4%E4%BA%8B%E4%BB%B6/">http://www.qszjq.xyz/2017/12/18/redis%E9%94%AE%E7%A9%BA%E9%97%B4%E4%BA%8B%E4%BB%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%B1%BB%E5%9E%8B/">类型</a><a class="post-meta__tags" href="/tags/SQL/">SQL</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/03/25/TFsRrz2NpYdkcbO.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2018/01/15/Git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/"><img class="prev-cover" src="https://i.loli.net/2021/04/28/R57QqEBanLb3tgU.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Git的简单介绍</div></div></a></div><div class="next-post pull-right"><a href="/2017/12/16/redis%E5%8F%91%E5%B8%83%E8%80%85%E8%AE%A2%E9%98%85%E8%80%85%E6%A8%A1%E5%BC%8F/"><img class="next-cover" src="https://i.loli.net/2021/03/25/rSJQRmFj5c8HVio.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">redis发布者订阅者模式</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2019/06/25/MongoDB的使用/" title="MongoDB的使用"><img class="cover" src="https://i.loli.net/2021/03/25/XLApPf9Za5VWv7M.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-25</div><div class="title">MongoDB的使用</div></div></a></div><div><a href="/2021/03/15/PostgerSQL/" title="PostgerSQL的介绍"><img class="cover" src="https://i.loli.net/2021/04/20/JcklWLKXN6UIF7s.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-15</div><div class="title">PostgerSQL的介绍</div></div></a></div><div><a href="/2017/12/16/redis发布者订阅者模式/" title="redis发布者订阅者模式"><img class="cover" src="https://i.loli.net/2021/03/25/rSJQRmFj5c8HVio.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2017-12-16</div><div class="title">redis发布者订阅者模式</div></div></a></div><div><a href="/2020/06/28/Docker部署项目/" title="Docker部署项目"><img class="cover" src="https://i.loli.net/2021/03/29/EWBAZdxJ4cQseIz.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-28</div><div class="title">Docker部署项目</div></div></a></div><div><a href="/2020/04/16/ECharts的使用/" title="ECharts 的使用"><img class="cover" src="https://i.loli.net/2021/04/20/TSGlexpuCKQAL7D.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-16</div><div class="title">ECharts 的使用</div></div></a></div><div><a href="/2018/01/15/Git的简单介绍/" title="Git的简单介绍"><img class="cover" src="https://i.loli.net/2021/04/28/R57QqEBanLb3tgU.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-01-15</div><div class="title">Git的简单介绍</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/friend_404.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">qinshang</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/15632404260/blogs.git"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E7%94%A8%E9%94%AE%E7%A9%BA%E9%97%B4%E9%80%9A%E7%9F%A5"><span class="toc-number">1.</span> <span class="toc-text">启用键空间通知</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E7%A6%81%E7%94%A8%E9%94%AE%E7%A9%BA%E9%97%B4%E4%BA%8B%E4%BB%B6%E9%80%9A%E7%9F%A5%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8redis-conf%E6%88%96redis-cli%E4%B8%AD%E5%90%AF%E7%94%A8"><span class="toc-number">1.0.1.</span> <span class="toc-text">默认情况下，禁用键空间事件通知，可以在redis.conf或redis-cli中启用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E4%BA%8B%E4%BB%B6%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="toc-number">1.0.2.</span> <span class="toc-text">检查事件是否正常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%BB%88%E7%AB%AF2%E8%BE%93%E5%85%A5-set-key1-value1"><span class="toc-number">1.0.3.</span> <span class="toc-text">打开终端2输入 set key1 value1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E6%89%93%E5%BC%80%E7%BB%88%E7%AB%AF1%E4%BC%9A%E7%9C%8B%E5%88%B0%EF%BC%9A"><span class="toc-number">1.0.4.</span> <span class="toc-text">再打开终端1会看到：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">事件的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%A9%BA%E9%97%B4%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">键空间配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#notify-keyspace-events-%E7%9A%84%E5%8F%82%E6%95%B0%E5%8F%AF%E4%BB%A5%E6%98%AF%E4%BB%A5%E4%B8%8B%E5%AD%97%E7%AC%A6%E7%9A%84%E4%BB%BB%E6%84%8F%E7%BB%84%E5%90%88%EF%BC%8C-%E5%AE%83%E6%8C%87%E5%AE%9A%E4%BA%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%A5%E5%8F%91%E9%80%81%E5%93%AA%E4%BA%9B%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%80%9A%E7%9F%A5%EF%BC%9A"><span class="toc-number">3.0.1.</span> <span class="toc-text">notify-keyspace-events 的参数可以是以下字符的任意组合， 它指定了服务器该发送哪些类型的通知：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#One"><span class="toc-number">5.</span> <span class="toc-text">One</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#redis%E5%8F%91%E5%B8%83%E6%89%80%E6%9C%89%E9%80%9A%E7%9F%A5%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF1001%E8%AE%A2%E9%98%85%E6%89%80%E6%9C%89%E6%B6%88%E6%81%AF"><span class="toc-number">5.0.1.</span> <span class="toc-text">redis发布所有通知，客户端1001订阅所有消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%AE%A2%E6%88%B7%E7%AB%AF1002%E4%B8%8A%E6%89%A7%E8%A1%8Cset%E5%92%8Cdel%E5%91%BD%E4%BB%A4"><span class="toc-number">5.0.2.</span> <span class="toc-text">在客户端1002上执行set和del命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF1001%E7%9A%84%E5%86%85%E5%AE%B9%E5%A6%82%E4%B8%8B"><span class="toc-number">5.0.3.</span> <span class="toc-text">客户端1001的内容如下</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Two"><span class="toc-number">6.</span> <span class="toc-text">Two</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#redis%E4%BB%85%E5%8F%91%E5%B8%83keyspace%E9%80%9A%E7%9F%A5%EF%BC%8C%E8%80%8C%E5%AE%A2%E6%88%B7%E7%AB%AF1001%E8%AE%A2%E9%98%85%E6%89%80%E6%9C%89%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.0.1.</span> <span class="toc-text">redis仅发布keyspace通知，而客户端1001订阅所有消息类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%AE%A2%E6%88%B7%E7%AB%AF1002%E4%B9%9F%E6%89%A7%E8%A1%8C%E4%BB%A5%E4%B8%8A%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%86%8D%E6%9D%A5%E7%9C%8B%E5%AE%A2%E6%88%B7%E7%AB%AF1001%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">6.0.2.</span> <span class="toc-text">在客户端1002也执行以上操作，再来看客户端1001的内容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Three"><span class="toc-number">7.</span> <span class="toc-text">Three</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#redis%E5%8F%91%E5%B8%83%E6%89%80%E6%9C%89%E9%80%9A%E7%9F%A5%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF1001%E4%BB%85%E8%AE%A2%E9%98%85keyspace%E6%B6%88%E6%81%AF"><span class="toc-number">7.0.1.</span> <span class="toc-text">redis发布所有通知，客户端1001仅订阅keyspace消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%AE%A2%E6%88%B7%E7%AB%AF1002%E4%B9%9F%E6%89%A7%E8%A1%8C%E4%BB%A5%E4%B8%8A%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%86%8D%E6%9D%A5%E7%9C%8B%E5%AE%A2%E6%88%B7%E7%AB%AF1001%E7%9A%84%E5%86%85%E5%AE%B9-1"><span class="toc-number">7.0.2.</span> <span class="toc-text">在客户端1002也执行以上操作，再来看客户端1001的内容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Four"><span class="toc-number">8.</span> <span class="toc-text">Four</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#redis%E4%BB%85%E5%8F%91%E5%B8%83%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%80%9A%E7%9F%A5%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF1001%E8%AE%A2%E9%98%85%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%B6%88%E6%81%AF"><span class="toc-number">8.0.1.</span> <span class="toc-text">redis仅发布字符串特定类型的通知，客户端1001订阅所有类型的消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%AE%A2%E6%88%B7%E7%AB%AF1002%E4%B8%8A%E6%89%A7%E8%A1%8Clpush%E3%80%81set%E5%92%8Cdel%E5%91%BD%E4%BB%A4"><span class="toc-number">8.0.2.</span> <span class="toc-text">在客户端1002上执行lpush、set和del命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF1001%E7%9A%84%E5%86%85%E5%AE%B9%E5%A6%82%E4%B8%8B-1"><span class="toc-number">8.0.3.</span> <span class="toc-text">客户端1001的内容如下</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/15/PostgerSQL/" title="PostgerSQL的介绍"><img src="https://i.loli.net/2021/04/20/JcklWLKXN6UIF7s.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PostgerSQL的介绍"/></a><div class="content"><a class="title" href="/2021/03/15/PostgerSQL/" title="PostgerSQL的介绍">PostgerSQL的介绍</a><time datetime="2021-03-15T01:56:31.000Z" title="Created 2021-03-15 09:56:31">2021-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/16/%E8%87%AA%E5%BB%BA%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="自建消息队列并设置加权"><img src="https://i.loli.net/2021/03/25/8PZUqSzFmIBYWeH.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自建消息队列并设置加权"/></a><div class="content"><a class="title" href="/2020/11/16/%E8%87%AA%E5%BB%BA%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="自建消息队列并设置加权">自建消息队列并设置加权</a><time datetime="2020-11-16T10:26:57.000Z" title="Created 2020-11-16 18:26:57">2020-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/28/Docker%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/" title="Docker部署项目"><img src="https://i.loli.net/2021/03/29/EWBAZdxJ4cQseIz.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker部署项目"/></a><div class="content"><a class="title" href="/2020/06/28/Docker%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/" title="Docker部署项目">Docker部署项目</a><time datetime="2020-06-28T02:45:37.000Z" title="Created 2020-06-28 10:45:37">2020-06-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/02/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E9%95%9C%E5%83%8F/" title="docker容器与镜像"><img src="https://i.loli.net/2021/03/25/TCK2b5nAgmYWdfV.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker容器与镜像"/></a><div class="content"><a class="title" href="/2020/06/02/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E9%95%9C%E5%83%8F/" title="docker容器与镜像">docker容器与镜像</a><time datetime="2020-06-02T02:28:31.000Z" title="Created 2020-06-02 10:28:31">2020-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/05/20/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0ElasticSearch/" title="基于python实现ElasticSearch"><img src="https://i.loli.net/2021/04/27/7wNHKXtRCPFhoxv.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于python实现ElasticSearch"/></a><div class="content"><a class="title" href="/2020/05/20/%E5%9F%BA%E4%BA%8Epython%E5%AE%9E%E7%8E%B0ElasticSearch/" title="基于python实现ElasticSearch">基于python实现ElasticSearch</a><time datetime="2020-05-20T02:40:31.000Z" title="Created 2020-05-20 10:40:31">2020-05-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> qinshang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script>#樱花<script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script>#樱花<script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
